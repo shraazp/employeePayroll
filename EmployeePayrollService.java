@@ -54,7 +54,11 @@ public class EmployeePayrollService {
         double salary=consoleInputReader.nextDouble();
         employeePayrollList.add(new EmployeePayrollData(id, name, salary));       
     }
-    public long countEntries(IOService ioService) {  
+    public long countEntries() {  
         return new EmployeePayrollFileIOService().countEntries();
+    }
+    public void printData()
+    {
+        new EmployeePayrollFileIOService().printData();
     }
 }
