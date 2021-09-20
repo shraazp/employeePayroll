@@ -4,6 +4,7 @@ import java.util.*;
 import org.junit.Test;
 import com.user.employee.payroll.EmployeePayrollService.IOService;
 public class EmployeePayrollServiceTest {
+    
     @Test 
     public void given3EmployeesWhenWrittenToFileShouldMatchEmployeeEntries() {
         EmployeePayrollData[] arrayOfEmps= {
@@ -14,7 +15,14 @@ public class EmployeePayrollServiceTest {
         EmployeePayrollService employeePayrollService;
         employeePayrollService =new EmployeePayrollService(Arrays.asList(arrayOfEmps));
         employeePayrollService.writeEmployeePayrollData(IOService.FIlE_IO);
-        long entries=employeePayrollService.countEntries(IOService.FIlE_IO);
+        long entries=employeePayrollService.countEntries();
+        employeePayrollService.printData();
+        assertEquals(3,entries);
+    }
+    @Test
+    public void givenFileOnReadingFromFileShouldMatchEmployeeCout() {
+        EmployeePayrollService employeePayrollService = new EmployeePayrollService();
+        long entries=employeePayrollService.readEmployeePayrollData();
         assertEquals(3,entries);
     }
 }

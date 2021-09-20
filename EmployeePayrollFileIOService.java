@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class EmployeePayrollFileIOService {
     public static final String PAYROLL_FILE_NAME="C:\\Users\\Shravya P\\eclipse-workspace\\payroll\\src\\main\\java\\com\\user\\employee\\payroll\\payroll-file.txt";
@@ -39,6 +41,18 @@ public class EmployeePayrollFileIOService {
         {
             e.printStackTrace();
         }
+    }
+    public List<EmployeePayrollData> readData(){
+        List<EmployeePayrollData> employeePayrollList=new ArrayList<>();
+        try {
+            Files.lines((new File(PAYROLL_FILE_NAME).toPath()))
+            .map(line->line.trim())
+            .forEach(line->System.out.println(line));
+        }catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+        return employeePayrollList;
     }
 
 }

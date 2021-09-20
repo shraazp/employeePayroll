@@ -21,13 +21,7 @@ public class EmployeePayrollService {
     {
         this.employeePayrollList=employeePayrollList;
     }
-    public static void main(String[] args) {
-        ArrayList<EmployeePayrollData> employeepayrollList=new ArrayList<>();
-        EmployeePayrollService employeePayrollService=new EmployeePayrollService(employeepayrollList);
-        Scanner consoleInputReader=new Scanner(System.in);
-        employeePayrollService.readEmployeePayrollData(consoleInputReader);
-        employeePayrollService.writeEmployeePayrollData(IOService.FIlE_IO);
-    }
+    
     /**
      * write the Employee Payroll to the Console
      */
@@ -45,7 +39,7 @@ public class EmployeePayrollService {
      * Read the information from the Console
      * @param consoleInputReader console input reader
      */
-   public void readEmployeePayrollData(Scanner consoleInputReader) {
+    public void readEmployeePayrollData(Scanner consoleInputReader) {
         System.out.println("Enter Employee Id:");
         int id=consoleInputReader.nextInt();
         System.out.println("Enter Employee Name:");
@@ -60,5 +54,10 @@ public class EmployeePayrollService {
     public void printData()
     {
         new EmployeePayrollFileIOService().printData();
+    }
+    public long readEmployeePayrollData()
+    {
+        this.employeePayrollList=new EmployeePayrollFileIOService().readData();
+        return this.employeePayrollList.size();
     }
 }
