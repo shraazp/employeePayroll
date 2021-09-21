@@ -47,7 +47,11 @@ public class EmployeePayrollFileIOService {
         try {
             Files.lines((new File(PAYROLL_FILE_NAME).toPath()))
             .map(line->line.trim())
-            .forEach(line->System.out.println(line));
+            .forEach(line->{
+                System.out.println(line);
+                String[] s=line.split(",",3);
+                employeePayrollList.add(new EmployeePayrollData(Integer.parseInt(s[0]),s[1],Double.parseDouble(s[2])));
+            });
         }catch(IOException e)
         {
             e.printStackTrace();
